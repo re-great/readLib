@@ -32,18 +32,16 @@ def bookName():
             MyText = recog.recognize_google(audio2)
             MyText = MyText.lower()
       
-            print("Did you say " + MyText)
             code = 1
             return code, MyText;
                   
     except sr.RequestError as e:
-        print("Could not request results; {0}".format(e))
+        # print("Could not request results; {0}".format(e))
         errorText = "Could not request results"
         code = -1
         return code, MyText;
               
     except sr.UnknownValueError:
-        print("Unknown error occured")
         errorText = "Unknown error occured"
         code = -1
         return code, MyText;
