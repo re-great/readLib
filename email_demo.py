@@ -8,6 +8,9 @@ from sqlite3.dbapi2 import Connection, connect
 def get_otp(lim):
     return secrets.token_urlsafe()[:lim]
 
+PROJ_EMAIL = ''
+PROJ_PASS = ''
+
 
 
 
