@@ -1,5 +1,5 @@
 from tkinter import *
-from ligben import *
+from libgen import *
 import webbrowser
 
 global fl_e1
