@@ -1,9 +1,9 @@
 import sqlite3
 
-
+# Creating connection object conn and cursor object (helps in executiong all sql statements).
 conn = sqlite3.connect('BookUsers.db')
 curr = conn.cursor()
-
+# Creating table UserInfo and ResetPass 
 with conn:
     curr.execute("CREATE TABLE IF NOT EXISTS Userinfo (UserID text Primary key , Userpass text NOT NULL , UserEmail NOT NULL)")
     curr.execute("CREATE TABLE IF NOT EXISTS ResetPass (Email text Primary key , OTP text NOT NULL)")
@@ -26,7 +26,7 @@ def insert_user(uid , mail , p):
         curr.execute("INSERT INTO Userinfo VALUES (:uid , :pass , :mail)",{'uid' : uid , 'mail' : mail , 'pass' : p})
         conn.commit()
 
-
+# curr.fetchone -> Fetches the next row of a query result set, returning a single sequence, or None when no more data is available.
 
 
 def update_otp(mail , otp):
