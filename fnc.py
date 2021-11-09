@@ -184,36 +184,36 @@ def binded(widget, bcolor, fcolor):
     widget.bind("<Leave>", not_hovering)
 
 
-def submit(event):
-    # print('submitted' , user_entry.get() , pass_entry.get())
-    curr_user = user_entry.get().strip()
-    curr_pass = pass_entry.get()
-    print(curr_user, curr_pass)
+# def submit(event):
+#     # print('submitted' , user_entry.get() , pass_entry.get())
+#     curr_user = user_entry.get().strip()
+#     curr_pass = pass_entry.get()
+#     print(curr_user, curr_pass)
 
-    info = user_details(curr_user)
-    print(info)
+#     info = user_details(curr_user)
+#     print(info)
 
-    if (info is None):
-        print('NO USER RECORD IN DATABASE')
-        choice = messagebox.askquestion('Username invalid', 'Username not found\nClick on Create new account')
-        if choice == 'yes':
-            create_acc_fxn()
+#     if (info is None):
+#         print('NO USER RECORD IN DATABASE')
+#         choice = messagebox.askquestion('Username invalid', 'Username not found\nClick on Create new account')
+#         if choice == 'yes':
+#             create_acc_fxn()
 
-        user_entry.delete(0, END)
-        pass_entry.delete(0, END)
+#         user_entry.delete(0, END)
+#         pass_entry.delete(0, END)
 
-    elif (info[0] == curr_user and info[1] == curr_pass):
-        main.destroy()
+#     elif (info[0] == curr_user and info[1] == curr_pass):
+#         main.destroy()
 
-        NewRoot = Tk()
-        SF = createSearch(NewRoot)
-        SF.grid(row=0, column=0, padx=10, pady=20, ipadx=50)
+#         NewRoot = Tk()
+#         SF = createSearch(NewRoot)
+#         SF.grid(row=0, column=0, padx=10, pady=20, ipadx=50)
 
-        print('user verified')
-        # root.title('USER VERIFIED')
-        root.destroy()
-    else:
-        print('incorrect password')
-        messagebox.showerror('ERROR!!!', 'Wrong Username password combo', parent=main)
-        user_entry.delete(0, END)
-        pass_entry.delete(0, END)
+#         print('user verified')
+#         # root.title('USER VERIFIED')
+#         root.destroy()
+#     else:
+#         print('incorrect password')
+#         messagebox.showerror('ERROR!!!', 'Wrong Username password combo', parent=main)
+#         user_entry.delete(0, END)
+#         pass_entry.delete(0, END)
