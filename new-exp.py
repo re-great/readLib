@@ -5,6 +5,7 @@ from tkinter.font import BOLD
 from email_demo import *
 from dbcommands import *
 from fnc import *
+from libgen import *
 
 
 
@@ -49,8 +50,9 @@ for i in range (1 ,90):
 for i in range(90):
  
 	frame = LabelFrame(root , bg = '#'+list1[89-i] + 'ff' + list2[i] , bd = 0 ,width = 40 , height = 100)
-	frame.grid( row = 0 ,column = i , sticky = 'news' , columnspan = 20 )
+	frame.grid( row = 0 ,column 	= i , sticky = 'news' , columnspan = 20 )
 	root.columnconfigure(i , weight = 1)
+	
 
 
 #MAINFRAME (LOGIN WINDOW)
@@ -86,13 +88,18 @@ def submit(event):
         
         NewRoot = Tk()
         SF = createSearch(NewRoot)
-        SF.grid(row = 0 , column = 0 , padx = 10 , pady = 20 , ipadx = 50 )
-        NewRoot.geometry("800x600")
+        SF.place(relx = .1 , rely = .05 , relheight = 0.35 , relwidth = 0.8)
+        NewRoot.geometry("1000x700+100+30")
         NewRoot.configure(bg="#fa3")
         NewRoot.title("Book Fetcher Project")
 
-        
-        
+
+        RES = createResult(NewRoot)
+        RES.place(relx = .1 , rely = 0.45 , relwidth = 0.8 , relheight = 0.45)
+        # RES.pack()
+
+       
+       
         print('user verified')
         # root.title('USER VERIFIED')
     else:
@@ -155,7 +162,7 @@ def forgotpass():
 		info = reset_details(email)
 		data = user_check_mail(email)
 
-		print(info)
+		print(info)	
 		if(info[1] == otp):
 			
 			ff_l1.config(text='Enter new password')
@@ -359,6 +366,7 @@ def create_acc_fxn():
 
 
 
+
 	AccFrame.place( relx = 0.4 , rely = 0.2 ,relheight = 0.7 , relwidth = 0.375)
 	AccFrame.bind('<Configure>',resize3)
 	relief_widget(af_b1,'#03ccbd','black')
@@ -466,60 +474,6 @@ main.place( relx = 0.4 , rely = 0.4 ,relheight = 0.4 , relwidth = 0.375 )
 root.rowconfigure(0 , weight = 1)
 main.bind('<Configure>' , resize)
 
-
-def createSearch(newRoot):
-	options = ['By Author' , 'By Book Name']
-	query = StringVar()
-	SearchFrame = LabelFrame(newRoot , text = "Search For Book", padx = 10 , pady = 10 , height = 2)
-
-	#WIDGETS FOR SEARCHFRAME FRAME
-	fl_l1 = Label(SearchFrame,text = options[0] , bg = 'black' , fg = 'orange')
-	fl_e1 = Entry(SearchFrame)
-	fl_b1 = Button(SearchFrame , text = 'Search' ,command = lambda:Search(fl_e1.get()) , bg = 'black' , fg = 'orange' )
-
-	fl_l2 = Label(SearchFrame,text = options[1] , bg = 'black' , fg = 'orange' )
-	fl_e2 = Entry(SearchFrame)
-	fl_b2 = Button(SearchFrame , text = 'Search' , command = lambda:Search(fl_e2.get()) , bg = 'black' , fg = 'orange')
-
-	#PUSHING ONTO SCREEN
-	fl_l1.grid(row = 0 , column = 0  , ipadx = 20 , ipady = 25)
-	fl_e1.grid(row = 0 , column = 1 , padx = 20)
-	fl_b1.grid(row = 0 , column = 2, ipadx = 20 )
-
-	fl_l2.grid(row = 1 , column = 0 , pady = 20 , ipadx = 20 , ipady = 20)
-	fl_e2.grid(row = 1 , column = 1 , padx = 20 )
-	fl_b2.grid(row = 1 , column = 2, ipadx = 25 )
-
-
-	#STYLING WIDGETS 
-	fl_l1.config(font=('courier',20))
-	fl_l2.config(font=('courier',20))
-
-	fl_e1.config(font=('courier',))
-	fl_e2.config(font=('courier',))
-
-
-	fl_b1.config(font = ('courier' , 15))
-	fl_b2.config(font = ('courier' , 15))
-
-	binded(fl_b1 , '#000000' , 'orange')
-	binded(fl_b2 , '#000000' , 'orange')
-	SearchFrame.config(background = 'black' , font = ('courier' , 15) , fg = 'white')
-
-	return SearchFrame
-
-def binded(widget , bcolor , fcolor):
-	def hovering(a):
-		widget['background'] = fcolor
-		widget['foreground'] = bcolor
-		widget.config(font=('courier' , 15 , 'bold'))
-
-	def not_hovering(a):
-		widget['background'] = bcolor
-		widget['foreground'] = fcolor
-	
-	widget.bind('<Enter>' , hovering)
-	widget.bind("<Leave>" , not_hovering)
 
 
 mainloop()
